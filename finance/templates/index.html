@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"> Symbol </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Shares </th>
+                <th scope="col"> Current Price (USD) </th>
+                <th scope="col"> Total Value (USD) </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for symbol, values in owned.items() %}
+            <tr>
+                <th scope="row">{{ symbol }}</th>
+                <td>{{ values[0] }}</td>
+                <td>{{ values[1] }}</td>
+                <td>{{ values[2] }}</td>
+                <td>{{ values[3] }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="bg-success">
+                <th scope="row" colspan="4"> Remaining Money </th>
+                <td> {{cash}} </td>
+            </tr>
+            <tr class="bg-primary" colspan="4"> Total Balance </tr>
+            <td> {{total}} </td>
+        </tbody>
+    </table>
+{% endblock %}
