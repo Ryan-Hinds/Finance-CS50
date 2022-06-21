@@ -8,29 +8,32 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col"> Symbol </th>
-                <th scope="col"> Name </th>
-                <th scope="col"> Shares </th>
-                <th scope="col"> Current Price (USD) </th>
-                <th scope="col"> Total Value (USD) </th>
+                <th class="text-start"> Symbol </th>
+                <th class="text-start"> Name </th>
+                <th class="text-end"> Shares </th>
+                <th class="text-end"> Current Price (USD) </th>
+                <th class="text-end"> Total Value (USD) </th>
             </tr>
         </thead>
         <tbody>
-            {% for symbol, values in owned.items() %}
+            {% for own in owns %}
             <tr>
-                <th scope="row">{{ symbol }}</th>
-                <td>{{ values[0] }}</td>
-                <td>{{ values[1] }}</td>
-                <td>{{ values[2] }}</td>
-                <td>{{ values[3] }}</td>
+                <td class="text-start">{{ own.symbol }}</td>
+                <td class="text-start">{{ own.name }}</td>
+                <td class="text-end">{{ own.shares }}</td>
+                <td class="text-end">{{ own.price | usd }}</td>
+                <td class="text-end">{{ own.value | usd }}</td>
             </tr>
             {% endfor %}
-            <tr class="bg-success">
-                <th scope="row" colspan="4"> Remaining Money </th>
-                <td> {{cash}} </td>
-            </tr>
-            <tr class="bg-primary" colspan="4"> Total Balance </tr>
-            <td> {{total}} </td>
         </tbody>
+        </tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                <td class="border-0 text-end">{{ balance }}</td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">Total</td>
+                <td class="border-0 text-end">{{ total }}</td>
+            </tr>
     </table>
 {% endblock %}
